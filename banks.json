@@ -1,0 +1,30 @@
+[
+    {
+      "value": "033",
+      "label": "Banco Santander S. A."
+    },
+    {
+      "value": "066",
+      "label": "Morgan Stanley Bank"
+    },
+    {
+      "value": "077",
+      "label": "Banco Inter S.A."
+    },
+    {
+      "value": "488",
+      "label": "JPMorgan Chase Bank"
+    },
+    {
+      "value": "755",
+      "label": "Bank of America Merrill Lynch"
+    },
+    {
+      "value": "999",
+      "label": "Banco Clara S.A."
+    },
+    {
+      "value": "000",
+      "label": "Brex Bank"
+    }
+  ]

@@ -1,0 +1,287 @@
+{
+  "workspace": {
+    "name": "Untitled Workspace",
+    "language": "en",
+    "theme": "#ffffff",
+    "logo_url": null,
+    "favicon_url": null,
+    "brand_name": "Bank Expenses Conciliation",
+    "main_color": "#E21337",
+    "font_family": null,
+    "font_color": null
+  },
+  "kanban": {
+    "access_control": {
+      "is_public": false,
+      "required_roles": []
+    }
+  },
+  "home": {
+    "access_control": {
+      "is_public": true,
+      "required_roles": []
+    }
+  },
+  "jobs": [
+    {
+      "id": "c5d9cdb4-0035-415c-91ca-ff6fadd0f310",
+      "file": "get_expenses_from_inter_api.py",
+      "title": "Get Expenses From Inter Bank API",
+      "schedule": "30 20 1 * *",
+      "workflow_position": [
+        -30.0,
+        60.0
+      ],
+      "transitions": [
+        {
+          "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
+          "target_type": "scripts",
+          "type": "jobs:finished",
+          "id": "utteucc",
+          "condition_value": null
+        }
+      ]
+    },
+    {
+      "id": "070cf579-73ed-486c-aa2f-283d1e15eac7",
+      "file": "get_expenses_from_santander_api.py",
+      "title": "Get Expenses From Santander Bank API",
+      "schedule": "30 20 1 * *",
+      "workflow_position": [
+        -30.0,
+        165.0
+      ],
+      "transitions": [
+        {
+          "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
+          "target_type": "scripts",
+          "type": "jobs:finished",
+          "id": "hqy4pve",
+          "condition_value": null
+        }
+      ]
+    },
+    {
+      "id": "4c4a18ea-2927-41cf-8d4d-ea3953803720",
+      "file": "get_expenses_from_brex_api.py",
+      "title": "Get Expenses From Brex Bank API",
+      "schedule": "30 20 1 * *",
+      "workflow_position": [
+        -30.0,
+        -30.0
+      ],
+      "transitions": [
+        {
+          "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
+          "target_type": "scripts",
+          "type": "jobs:finished",
+          "id": "2xe43p9",
+          "condition_value": null
+        }
+      ]
+    },
+    {
+      "id": "e9b05a07-ff37-4adc-a9b5-e05b59f9bf28",
+      "file": "get_expenses_from_carla_api.py",
+      "title": "Get Expenses From Carla Bank API",
+      "schedule": "30 20 1 * *",
+      "workflow_position": [
+        -30.0,
+        -120.0
+      ],
+      "transitions": [
+        {
+          "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
+          "target_type": "scripts",
+          "type": "jobs:finished",
+          "id": "i8ygbh4",
+          "condition_value": null
+        }
+      ]
+    }
+  ],
+  "hooks": [],
+  "forms": [
+    {
+      "id": "8b58c5bc-d525-4f3b-a452-696bcc17a2e6",
+      "path": "upload-bank-expenses",
+      "title": "Upload Expenses From Spreadsheet",
+      "is_initial": true,
+      "auto_start": false,
+      "allow_restart": false,
+      "end_message": null,
+      "start_message": null,
+      "error_message": null,
+      "welcome_title": null,
+      "timeout_message": null,
+      "start_button_text": null,
+      "restart_button_text": null,
+      "file": "upload_bank_expenses_form.py",
+      "workflow_position": [
+        -30.0,
+        345.0
+      ],
+      "transitions": [
+        {
+          "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
+          "target_type": "conditions",
+          "type": "forms:finished",
+          "id": "o4qs36w",
+          "condition_value": null
+        }
+      ],
+      "notification_trigger": {
+        "variable_name": "assignee_emails",
+        "enabled": false
+      },
+      "access_control": {
+        "is_public": false,
+        "required_roles": []
+      }
+    },
+    {
+      "id": "71c68719-5905-46cf-9d30-f14f67b5dff3",
+      "path": "manual-bank-expense-concilliation",
+      "title": "Manual Bank Expense Concilliation",
+      "is_initial": false,
+      "auto_start": false,
+      "allow_restart": false,
+      "end_message": null,
+      "start_message": null,
+      "error_message": null,
+      "welcome_title": null,
+      "timeout_message": null,
+      "start_button_text": null,
+      "restart_button_text": null,
+      "file": "manual_bank_expense_concilliation.py",
+      "workflow_position": [
+        1080.0,
+        195.0
+      ],
+      "transitions": [
+        {
+          "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
+          "target_type": "conditions",
+          "type": "forms:finished",
+          "id": "r94l5g1",
+          "condition_value": null
+        }
+      ],
+      "notification_trigger": {
+        "variable_name": "notification_email",
+        "enabled": true
+      },
+      "access_control": {
+        "is_public": false,
+        "required_roles": []
+      }
+    },
+    {
+      "id": "cb8d65bc-c630-4c66-bb9f-365498e1f3fb",
+      "path": "register-missing-expenses",
+      "title": "Register Missing Expenses",
+      "is_initial": false,
+      "auto_start": false,
+      "allow_restart": false,
+      "end_message": null,
+      "start_message": null,
+      "error_message": null,
+      "welcome_title": null,
+      "timeout_message": null,
+      "start_button_text": null,
+      "restart_button_text": null,
+      "file": "register_missing_expenses.py",
+      "workflow_position": [
+        1560.0,
+        345.0
+      ],
+      "transitions": [],
+      "notification_trigger": {
+        "variable_name": "notification_email",
+        "enabled": true
+      },
+      "access_control": {
+        "is_public": false,
+        "required_roles": []
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
+      "file": "match_expenses.py",
+      "title": "Match Expenses",
+      "is_initial": false,
+      "workflow_position": [
+        444.0,
+        36.0
+      ],
+      "transitions": [
+        {
+          "target_id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
+          "target_type": "conditions",
+          "type": "scripts:finished",
+          "id": "h7tddsg",
+          "condition_value": null
+        }
+      ]
+    },
+    {
+      "id": "7c1d5d08-c8b9-4780-9582-2f26304ea51b",
+      "file": "expenses_slack_notification.py",
+      "title": "Expenses Slack Notification",
+      "is_initial": false,
+      "workflow_position": [
+        1200.0,
+        45.0
+      ],
+      "transitions": [
+        {
+          "target_id": "71c68719-5905-46cf-9d30-f14f67b5dff3",
+          "target_type": "forms",
+          "type": "scripts:finished",
+          "id": "vn7zv87",
+          "condition_value": null
+        }
+      ]
+    }
+  ],
+  "iterators": [],
+  "conditions": [
+    {
+      "id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
+      "variable_name": "has_unmatched_expenses",
+      "workflow_position": [
+        768.0,
+        36.0
+      ],
+      "transitions": [
+        {
+          "target_id": "7c1d5d08-c8b9-4780-9582-2f26304ea51b",
+          "target_type": "scripts",
+          "type": "conditions:patternMatched",
+          "id": "fwwpggu",
+          "condition_value": "True"
+        }
+      ]
+    },
+    {
+      "id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
+      "variable_name": "has_unaproved_expenses",
+      "workflow_position": [
+        1080.0,
+        345.0
+      ],
+      "transitions": [
+        {
+          "target_id": "cb8d65bc-c630-4c66-bb9f-365498e1f3fb",
+          "target_type": "forms",
+          "type": "conditions:patternMatched",
+          "id": "xqhqrua",
+          "condition_value": "true"
+        }
+      ]
+    }
+  ],
+  "version": "11.0"
+}

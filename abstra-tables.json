@@ -1,0 +1,80 @@
+{
+  "tables": [
+    {
+      "id": "8ad15fc3-202d-4399-abda-e4c6eda62142",
+      "name": "intern_tracking_expenses",
+      "columns": [
+        {
+          "id": "3553fcc9-158d-4d54-b256-59517d1fe708",
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "unique": true,
+          "primaryKey": true,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "id": "e09064b0-b15d-47cc-bb0c-1408684ca6a7",
+          "name": "created_at",
+          "type": "timestamp",
+          "nullable": false,
+          "unique": false,
+          "primaryKey": false,
+          "default": "now()"
+        },
+        {
+          "id": "8877c88d-7a8e-4d76-92bf-46682b122f1f",
+          "name": "amount",
+          "type": "float4",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false,
+          "default": "0.0"
+        },
+        {
+          "id": "bbdb2691-3331-4ad2-b172-907b49dc067e",
+          "name": "currency",
+          "type": "varchar",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false
+        },
+        {
+          "id": "08e3b2a2-56d1-413c-aaa9-f7d65e8e1172",
+          "name": "bank",
+          "type": "varchar",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false
+        },
+        {
+          "id": "3a18c842-71ce-455b-9244-74450665d1ce",
+          "name": "date",
+          "type": "varchar",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false,
+          "default": "now()"
+        },
+        {
+          "id": "3adc2dbe-4095-4955-9824-f904df722f3d",
+          "name": "reason",
+          "type": "varchar",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false
+        },
+        {
+          "id": "2c8b9268-0681-43ca-8925-23935637e87f",
+          "name": "verified",
+          "type": "bool",
+          "nullable": true,
+          "unique": false,
+          "primaryKey": false,
+          "default": "false"
+        }
+      ],
+      "data": []
+    }
+  ]
+}
