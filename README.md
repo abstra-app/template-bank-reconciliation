@@ -24,7 +24,7 @@ To use this project, some initial configurations are necessary:
    The following environment variables are required for both local development and online deployment:
     1. Santander Bank
        - `SANTANDER_ACC_NUMBER`: Santander bank account number from which you want to import the expenses
-       - `SANTANDER_ROUTING_NUMBER`: Routing number of the account from which you want to import the expenses
+       - `SANTANDER_BANK_ID`: Santander bank Employer Identification Number (EIN)
        - `SANTANDER_API_KEY`: Santander authentication key to import the expenses using the API service
     2. Inter Bank
        - `INTER_BANK_ACC_NUMBER`: Inter bank account number from which you want to import the expenses
