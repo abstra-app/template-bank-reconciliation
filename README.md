@@ -23,14 +23,14 @@ To use this project, some initial configurations are necessary:
 
    The following environment variables are required for both local development and online deployment:
     1. Santander Bank
-       - `SANTANDER_BANK_ID`: Santander application ID to access the API services and import the expenses
        - `SANTANDER_ACC_NUMBER`: Santander bank account number from which you want to import the expenses
+       - `SANTANDER_ROUTING_NUMBER`: Routing number of the account from which you want to import the expenses
        - `SANTANDER_API_KEY`: Santander authentication key to import the expenses using the API service
     2. Inter Bank
        - `INTER_BANK_ACC_NUMBER`: Inter bank account number from which you want to import the expenses
+       - `INTER_API_KEY_PATH`: Path to Inter authentication key file (.key) provided by the bank and used for validation when using the API
        - `INTER_BANK_CLIENT_ID`: Inter application ID to access the API services
        - `INTER_BANK_CLIENT_SECRET`: Inter application secret to acess the API services and import the expenses
-       - `INTER_API_KEY_PATH`: Path to Inter authentication key file (.key) provided by the bank and used for validation when using the API
     3. Brex Bank
        - `BREX_API_KEY`: Brex authentication key to import the expenses using the API service
     4. Clara Bank
