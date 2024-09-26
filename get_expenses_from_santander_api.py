@@ -8,7 +8,7 @@ from pandas.tseries.offsets import BDay
 # Employer Identification Number of the bank (e.g.: CNPJ in Brazil)
 SANTANDER_BANK_ID = os.getenv("SANTANDER_BANK_ID")
 
-# Account number which you want to get the expenses from (on the format agency-account.account_number)
+# Account number which you want to get the expenses from (on the format routing_number.account_number)
 SANTANDER_ACC_NUMBER = os.getenv("SANTANDER_ACC_NUMBER")
 
 SANTANDER_API_KEY = os.getenv("SANTANDER_API_KEY") 
