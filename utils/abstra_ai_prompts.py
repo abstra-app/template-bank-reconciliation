@@ -5,6 +5,7 @@ class AIPrompts:
 
     @staticmethod
     def reason_ai_check(reason_one: str, reason_two: str):
+        '''Check if two reasons are the same or not using AI'''
         reason_match = prompt(
             prompt=f"Input (the two reasons described, inputed as a tuple): {(reason_one, reason_two)}",
             instructions=[
@@ -24,6 +25,7 @@ class AIPrompts:
     
     @staticmethod
     def use_ai_to_decide(unmatched_list, expenses_table, approved_list=[]):
+        '''Use AI to decide which expenses from the bank match with the internal expenses based on amount, currency, reason and date'''
         ai_processing_elements = []
         for unmatched_expense in unmatched_list:
             options_list = []

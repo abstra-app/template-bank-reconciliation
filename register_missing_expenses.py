@@ -11,6 +11,10 @@ unaproved_expenses_id = []
 
 # define the actions that can be taken on the unaproved expenses
 def encapsulate_actions(unaproved_expense):
+    '''
+    Encapsulates the actions that can be taken on the unaproved expenses
+    The options are Register in the database, Correct the database and Ignore
+    '''
     expense_id = unaproved_expense["id"]
     def __actions_options(partial):
         if partial:
@@ -50,11 +54,11 @@ def encapsulate_actions(unaproved_expense):
                     pass
     return __actions_options
 
-
+# render the initial page
 initial_page = af.Page().display_markdown(f'''
 <h2 style="text-align: center;">✏️ Expenses Registration and Correction</h1>
 
-Verify the followign unconciliated expenses and register them in the database or correct the database to match it. 
+Verify the following unconciliated expenses and register them in the database or correct the database to match it. 
 ''').run(['Add All Expenses to Database', 'Verify Each Expense'])
 
 if initial_page.action == 'Add All Expenses to Database':
@@ -63,8 +67,8 @@ if initial_page.action == 'Add All Expenses to Database':
     at.insert("internal_tracking_expenses", unaproved_expenses)
 
 if initial_page.action == 'Verify Each Expense':
+    # renders one page for each expense with the options to register, correct or ignore it
     page_list = []
-
     for unaproved_expense in unaproved_expenses:
         unaproved_expenses_id.append(unaproved_expense["id"])
         page_list.append(
@@ -84,6 +88,7 @@ if initial_page.action == 'Verify Each Expense':
 
     steps_response = af.run_steps(page_list)
 
+    # based on the actions selected for each expense, proceeds to insert on the database, update the database or ignore the expense
     if steps_response: 
         for response in steps_response:
             action_keys = set(response.keys()) & set(unaproved_expenses_id)

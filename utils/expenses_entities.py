@@ -66,6 +66,7 @@ class MatchedExpense:
 
     @staticmethod
     def _parse_to_dataframe(matched_list):
+        '''Parse matched expenses to a dataframe'''
         output_df = pd.DataFrame(columns=["Bank Expense Details", "Database Expense Details"])
         for matched in matched_list:
             output_df = pd.concat([
@@ -80,6 +81,7 @@ class MatchedExpense:
 
     @staticmethod
     def render_matched_page(matched_list) -> af.Page:
+        '''Generates the page with the matched expenses for the user to approve or reject them'''
         matched_page = (
             af.Page()
             .display_markdown('''
@@ -107,6 +109,10 @@ class UnmatchedExpense:
     
     @staticmethod
     def render_unmatched_page(unmatched_list, expenses_table, header, approved_list=[], ai_guess=[]) -> af.Page:
+        '''
+        Generates the page with the unmatched expenses and the dropdown options to match them with the internal expenses. 
+        The options are offered based on the expense date
+        '''
         unmatched_page = (
             af.Page()
             .display_markdown(header)
@@ -158,7 +164,12 @@ Expense {counting}:
 
     @staticmethod
     def render_overview_page(unmatched_list, unmatched_page, total_sample, from_api=False) -> Tuple[af.Page, List, List]:
-
+        '''
+        Renders the overview page with the unmatched expenses and the balance of the conciliation
+        based on the page where expenses where matched manually (unmatched_page) and on the list of all unmatched expenses (unmatched_list).
+        Additionally, it receives the total quantity of expenses and a flag to check if they came from the api.
+        Returns the overview page, the list of unapproved expenses and the list of approved expenses.
+        '''
         overview_page = af.Page().display_markdown(f'''
 <h2 style="text-align: center;">📃 Conciliation Completed 📃</h1>
     ''')

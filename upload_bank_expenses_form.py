@@ -14,7 +14,7 @@ notification_email = os.getenv("FINANCE_TEAM_EMAIL")
 with open('banks.json', encoding='utf-8') as f:
     banks_json = json.load(f)
 
-# Remove accents and tildes from bank labels
+# remove accents and tildes from bank labels
 for bank in banks_json:
     bank['label'] = unicodedata.normalize('NFKD', bank['label']).encode('ASCII', 'ignore').decode('utf-8')
 
@@ -23,6 +23,7 @@ destination_dir.mkdir(parents=True, exist_ok=True)
  
 
 def render_input_read(partial):
+    '''Render the spreadsheet read page based on the bank selected'''
     bank_dict = partial.get("bank", None)
     if bank_dict:
         return (
@@ -30,7 +31,7 @@ def render_input_read(partial):
             .read_file("Please upload the expenses file on format .xlsx", key="expenses_file")
         )
 
-
+# starting page with the bank selection and file upload
 expenses_input_page = (
     af.Page()
     .display_markdown(
@@ -46,12 +47,13 @@ expenses_input_page = (
     .run("Start processing")
 )
 
+# get the bank label from banks.json file based on the bank id value
 for bank in banks_json:
     if bank["value"] == expenses_input_page["bank"]:
         expenses_bank = bank["label"]
 
+# saves the uploaded file to the destination directory
 expenses_file = expenses_input_page.get("expenses_file", None)
-
 if expenses_file:
     shutil.copy(expenses_file.file.name, os.path.join(str(destination_dir), expenses_file.name))
 
@@ -59,6 +61,7 @@ af.display_markdown('''
 <h2 style="text-align: center;">Thank you for uploading the expenses file. We are processing it now.📎</h1>
 ''')
 
+# gets the expenses from the database and the uploaded file
 table_rows = at.select("internal_tracking_expenses", where={"verified": False, "bank": expenses_bank})
 database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
 excel_expenses = ExcelExpense.read_excel(os.path.join(str(destination_dir), expenses_file.name))
@@ -67,8 +70,10 @@ excel_expenses = ExcelExpense.read_excel(os.path.join(str(destination_dir), expe
 unmatched_list: list[UnmatchedExpense] = []
 matched_list: list[MatchedExpense] = []
 
-#dictionary of ExcelExpenses associated with possible matches
+# dictionary of ExcelExpenses associated with possible matches
 matching_by_all_mapping = {}
+
+# matches the expenses from the database with the expenses from the excel file
 for excel_expense in excel_expenses:
     matching_by_all_mapping[excel_expense.id] = [
         database_expense for database_expense in database_expenses if (
@@ -96,6 +101,7 @@ else:
 # list of verified expenses of the database
 total_approved_expenses: list[str] = []
 
+# iterates over the matched expenses to check if they were approved or not
 for expense in matched_list:
     if str(expense.excel_expense.id) not in approved_list:
         unmatched_list.append(UnmatchedExpense(**expense.excel_expense.to_dict()))

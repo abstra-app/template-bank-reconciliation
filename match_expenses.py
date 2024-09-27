@@ -16,6 +16,8 @@ database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
 
 unmatched_expenses = []
 
+# check if the expenses from the API match the expenses in the database based on amount, date, currency, and reason
+# additionaly, uses AI to check the reason if the reason is not an exact match
 for api_expense in api_output_data:
     match_found = False 
     for intern_expense in database_expenses:
