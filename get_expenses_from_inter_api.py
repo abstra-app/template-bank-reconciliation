@@ -5,11 +5,11 @@ import uuid
 from pandas.tseries.offsets import BDay
 from datetime import datetime, timedelta
 
-INTER_BANK_CLIENT_SECRET = os.getenv("INTER_BANK_CLIENT_SECRET")
-INTER_BANK_CLIENT_ID = os.getenv("INTER_BANK_CLIENT_ID")
+INTER_CLIENT_SECRET = os.getenv("INTER_CLIENT_SECRET")
+INTER_CLIENT_ID = os.getenv("INTER_CLIENT_ID")
 CERTIFICATION_PATH = os.getenv("CERTIFICATION_PATH")
 INTER_API_KEY_PATH = os.getenv("INTER_API_KEY_PATH")
-INTER_BANK_ACC_NUMBER = os.getenv("INTER_BANK_ACC_NUMBER")
+INTER_ACC_NUMBER = os.getenv("INTER_ACC_NUMBER")
 
 end_date = datetime.now() - timedelta(days=1)
 start_date = datetime.now() - BDay(30)
@@ -38,7 +38,7 @@ def get_expenses_from_inter_api():
 
     # request access token
     token_endpoint = "https://cdpj.partners.bancointer.com.br/oauth/v2/token"
-    token_request_body = f"client_id={INTER_BANK_CLIENT_ID}&client_secret={INTER_BANK_CLIENT_SECRET}&scope=extrato.read&grant_type=client_credentials"
+    token_request_body = f"client_id={INTER_CLIENT_ID}&client_secret={INTER_CLIENT_SECRET}&scope=extrato.read&grant_type=client_credentials"
     token_headers = {"Content-Type": "application/x-www-form-urlencoded"}
     cert=(f'{CERTIFICATION_PATH}.crt', f'{INTER_API_KEY_PATH}.key')
 
@@ -64,7 +64,7 @@ def get_expenses_from_inter_api():
 
     expenses_headers = {
         "Authorization": "Bearer " + token,
-        "x-conta-corrente": INTER_BANK_ACC_NUMBER,
+        "x-conta-corrente": INTER_ACC_NUMBER,
         "Content-Type": "Application/json",
     }
 

@@ -27,17 +27,17 @@ To use this project, some initial configurations are necessary:
        - `SANTANDER_BANK_ID`: Santander bank Employer Identification Number (EIN)
        - `SANTANDER_API_KEY`: Santander authentication key to import the expenses using the API service
     2. Inter Bank
-       - `INTER_BANK_ACC_NUMBER`: Inter bank account number from which you want to import the expenses
+       - `INTER_ACC_NUMBER`: Inter bank account number from which you want to import the expenses
        - `INTER_API_KEY_PATH`: Path to Inter authentication key file (.key) provided by the bank and used for validation when using the API
-       - `INTER_BANK_CLIENT_ID`: Inter application ID to access the API services
-       - `INTER_BANK_CLIENT_SECRET`: Inter application secret to acess the API services and import the expenses
+       - `INTER_CLIENT_ID`: Inter application ID used to generate the access token
+       - `INTER_CLIENT_SECRET`: Inter application secret used to generate the access token
     3. Brex Bank
        - `BREX_API_KEY`: Brex authentication key to import the expenses using the API service
     4. Clara Bank
-       - `CLARA_CERTIFICATION_PATH`: Path to Clara certification file provided by the bank (.pem)
+       - `CLARA_CERTIFICATION_PATH`: Path to Clara certification file (.pem) provided by the bank and used for validation when using the API
        - `CLARA_API_KEY_PATH`: Path to Clara authentication key file (.key) provided by the bank and used for validation when using the API
-       - `CLARA_CLIENT_ID`: Clara application ID to access the API services
-       - `CLARA_CLIENT_SECRET`: Clara application secret to access the API services
+       - `CLARA_CLIENT_ID`: Clara application ID used to generate the access token
+       - `CLARA_CLIENT_SECRET`: Clara application secret used to generate the access token
     6. Certification Path
        - `CERTIFICATION_PATH`: Path to the company certificate emitted by responsible institutions (.crt)
     7. Slack 

@@ -7,8 +7,8 @@ from pandas.tseries.offsets import BDay
 from datetime import datetime, timedelta
 
 CERTIFICATION_PATH = os.getenv("CERTIFICATION_PATH")
-CLARA_CERTIFICATION_PATH = os.getenv("CARLA_CERTIFICATION_PATH")
-CLARA_API_KEY_PATH = os.getenv("CARLA_API_KEY_PATH")
+CLARA_CERTIFICATION_PATH = os.getenv("CLARA_CERTIFICATION_PATH")
+CLARA_API_KEY_PATH = os.getenv("CLARA_API_KEY_PATH")
 CLARA_CLIENT_ID = os.getenv("CLARA_CLIENT_ID")
 CLARA_CLIENT_SECRET = os.getenv("CLARA_CLIENT_SECRET")
 
@@ -34,7 +34,7 @@ def format_response(response_data):
     return output
 
 
-def get_expenses_from_carla_api():
+def get_expenses_from_clara_api():
 
     # get access token
     # brazil clara token url
@@ -85,6 +85,6 @@ def get_expenses_from_carla_api():
     return response_expenses.json()["content"]
 
 
-response_data = get_expenses_from_carla_api()
+response_data = get_expenses_from_clara_api()
 formatted_response = format_response(response_data)
 aw.set_data("api_output", formatted_response)

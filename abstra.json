@@ -29,8 +29,8 @@
       "title": "Get Expenses From Inter Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        60.0
+        -30,
+        60
       ],
       "transitions": [
         {
@@ -48,8 +48,8 @@
       "title": "Get Expenses From Santander Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        165.0
+        -30,
+        165
       ],
       "transitions": [
         {
@@ -67,8 +67,8 @@
       "title": "Get Expenses From Brex Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        -30.0
+        -30,
+        -30
       ],
       "transitions": [
         {
@@ -82,12 +82,12 @@
     },
     {
       "id": "e9b05a07-ff37-4adc-a9b5-e05b59f9bf28",
-      "file": "get_expenses_from_carla_api.py",
-      "title": "Get Expenses From Carla Bank API",
+      "file": "get_expenses_from_clara_api.py",
+      "title": "Get Expenses From Clara Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        -120.0
+        -30,
+        -120
       ],
       "transitions": [
         {
@@ -118,8 +118,8 @@
       "restart_button_text": null,
       "file": "upload_bank_expenses_form.py",
       "workflow_position": [
-        -30.0,
-        345.0
+        -30,
+        345
       ],
       "transitions": [
         {
@@ -155,8 +155,8 @@
       "restart_button_text": null,
       "file": "manual_bank_expense_concilliation.py",
       "workflow_position": [
-        1080.0,
-        195.0
+        1080,
+        195
       ],
       "transitions": [
         {
@@ -192,8 +192,8 @@
       "restart_button_text": null,
       "file": "register_missing_expenses.py",
       "workflow_position": [
-        1560.0,
-        345.0
+        1560,
+        345
       ],
       "transitions": [],
       "notification_trigger": {
@@ -213,8 +213,8 @@
       "title": "Match Expenses",
       "is_initial": false,
       "workflow_position": [
-        444.0,
-        36.0
+        444,
+        36
       ],
       "transitions": [
         {
@@ -232,8 +232,8 @@
       "title": "Expenses Slack Notification",
       "is_initial": false,
       "workflow_position": [
-        1200.0,
-        45.0
+        1200,
+        45
       ],
       "transitions": [
         {
@@ -252,8 +252,8 @@
       "id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
       "variable_name": "has_unmatched_expenses",
       "workflow_position": [
-        768.0,
-        36.0
+        768,
+        36
       ],
       "transitions": [
         {
@@ -269,8 +269,8 @@
       "id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
       "variable_name": "has_unaproved_expenses",
       "workflow_position": [
-        1080.0,
-        345.0
+        1080,
+        345
       ],
       "transitions": [
         {
