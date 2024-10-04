@@ -82,7 +82,7 @@ def get_expenses_from_carla_api():
         print(f"Error getting expenses: {e}")
         return None
     
-    response_expenses.json()["content"]
+    return response_expenses.json()["content"]
 
 
 response_data = get_expenses_from_carla_api()
