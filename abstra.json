@@ -5,7 +5,7 @@
     "theme": "#ffffff",
     "logo_url": null,
     "favicon_url": null,
-    "brand_name": "Bank Expenses Conciliation",
+    "brand_name": "Bank Expenses Reconciliation",
     "main_color": "#E21337",
     "font_family": null,
     "font_color": null
@@ -29,8 +29,8 @@
       "title": "Get Expenses From Inter Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30,
-        60
+        -30.0,
+        60.0
       ],
       "transitions": [
         {
@@ -48,8 +48,8 @@
       "title": "Get Expenses From Santander Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30,
-        165
+        -30.0,
+        165.0
       ],
       "transitions": [
         {
@@ -67,8 +67,8 @@
       "title": "Get Expenses From Brex Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30,
-        -30
+        -30.0,
+        -30.0
       ],
       "transitions": [
         {
@@ -86,8 +86,8 @@
       "title": "Get Expenses From Clara Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30,
-        -120
+        -30.0,
+        -120.0
       ],
       "transitions": [
         {
@@ -118,8 +118,8 @@
       "restart_button_text": null,
       "file": "upload_bank_expenses_form.py",
       "workflow_position": [
-        -30,
-        345
+        -30.0,
+        345.0
       ],
       "transitions": [
         {
@@ -141,8 +141,8 @@
     },
     {
       "id": "71c68719-5905-46cf-9d30-f14f67b5dff3",
-      "path": "manual-bank-expense-concilliation",
-      "title": "Manual Bank Expense Concilliation",
+      "path": "manual-bank-reconcilliation",
+      "title": "Manual Bank Reconcilliation",
       "is_initial": false,
       "auto_start": false,
       "allow_restart": false,
@@ -153,10 +153,10 @@
       "timeout_message": null,
       "start_button_text": null,
       "restart_button_text": null,
-      "file": "manual_bank_expense_concilliation.py",
+      "file": "manual_bank_reconcilliation.py",
       "workflow_position": [
-        1080,
-        195
+        1080.0,
+        195.0
       ],
       "transitions": [
         {
@@ -192,8 +192,8 @@
       "restart_button_text": null,
       "file": "register_missing_expenses.py",
       "workflow_position": [
-        1560,
-        345
+        1560.0,
+        345.0
       ],
       "transitions": [],
       "notification_trigger": {
@@ -213,8 +213,8 @@
       "title": "Match Expenses",
       "is_initial": false,
       "workflow_position": [
-        444,
-        36
+        444.0,
+        36.0
       ],
       "transitions": [
         {
@@ -232,8 +232,8 @@
       "title": "Expenses Slack Notification",
       "is_initial": false,
       "workflow_position": [
-        1200,
-        45
+        1200.0,
+        45.0
       ],
       "transitions": [
         {
@@ -252,8 +252,8 @@
       "id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
       "variable_name": "has_unmatched_expenses",
       "workflow_position": [
-        768,
-        36
+        768.0,
+        36.0
       ],
       "transitions": [
         {
@@ -269,8 +269,8 @@
       "id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
       "variable_name": "has_unaproved_expenses",
       "workflow_position": [
-        1080,
-        345
+        1080.0,
+        345.0
       ],
       "transitions": [
         {

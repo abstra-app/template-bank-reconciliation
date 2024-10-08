@@ -1,4 +1,4 @@
-# Bank Expenses Conciliation Template
+# Bank Reconciliation Template
 ## How it works:
 
 This project includes an expense reconciliation system built with Abstra and Python scripts. Expenses are automatically imported from the bank's API and undergo an automated reconciliation process with the expenses registered in the database. If any expenses fail the automatic verification, a alert is sent on Slack and a form is sent to the responsible team for manual approval, assisted by Abstra AI. Additionally, expenses can be manually uploaded as an .xlsx file (see the attached example in this repository) through a designated form and reconciled using the information available in the database. For any unreconciled expenses, the responsible team has the option to register them in the database. 
@@ -10,9 +10,9 @@ Integrations:
   - Santander Bank
   - Clara Bank
 
-To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/demo?url=template-bank-expenses-conciliation)
+To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/demo?url=template-bank-reconciliation)
 
-![A bank expenses conciliation workflow built in Abstra](https://github.com/user-attachments/assets/0bf85f32-60d0-4913-9f05-2edb0da730c9)
+![A bank reconciliation workflow built in Abstra](https://github.com/user-attachments/assets/0bf85f32-60d0-4913-9f05-2edb0da730c9)
 
 
 ## Initial Configuration
@@ -88,14 +88,14 @@ For importing the expenses from the bank`s APIs, use:
   - **get_expenses_from_santander_api.py**: Script to import the expenses data from Santander API.
   - **get_expenses_from_brex_api.py**: Script to import the expenses data from Brex API.
 
-### Automatic Expenses Conciliation
+### Automatic Bank Reconciliation
   - **match_expenses.py**: Script to automatically verify imported expenses against those registered in the database.
 
 ### Slack Notification
   - **expenses_slack_notifcation.py**: Script to send an alert to a Slack channel regarding the unreconciled expenses resulting from the automatic matching process.
 
-### Manual Bank Expense Conciliation Form
-  - **manual_bank_expense_concilliation.py**: Script to generate a form for verifying unmatched expenses and matching them with expenses in the database.
+### Manual Bank Reconciliation Form
+  - **manual_bank_reconcilliation.py**: Script to generate a form for verifying unmatched expenses and matching them with expenses in the database.
 
 ### Manual Upload of Bank Expenses Form
   - **upload_bank_expenses_form.py**: Script to generate a form for uploading expenses as an .xlsx file (use `Bank_Expenses.xlsx` as a template) and verifying them against the expenses registered in the database.
@@ -104,4 +104,4 @@ For importing the expenses from the bank`s APIs, use:
   - **register_missing_expenses_form.py**: Script to register missing expenses in the database or update existing expenses to align with the information from the API or spreadsheet.
 
 
-If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/demo?url=template-bank-expenses-conciliation)
+If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/demo?url=template-bank-reconciliation)
