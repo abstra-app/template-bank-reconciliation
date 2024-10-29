@@ -53,7 +53,7 @@ def get_expenses_from_inter_api():
         token = token_response.json().get("access_token")
     except requests.exceptions.RequestException as e:
         print(f"Error getting token: {e}")
-        return None
+        raise SystemExit(e)
 
     expenses_endpoint = "https://cdpj.partners.bancointer.com.br/banking/v2/extrato"
 
@@ -78,7 +78,7 @@ def get_expenses_from_inter_api():
         expenses_response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error getting expenses: {e}")
-        return None
+        raise SystemExit(e)
 
     return expenses_response
 

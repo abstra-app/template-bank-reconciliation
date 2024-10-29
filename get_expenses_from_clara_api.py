@@ -53,7 +53,7 @@ def get_expenses_from_clara_api():
         token = response_token.json().get('access_token')
     except requests.exceptions.RequestException as e:
         print(f"Error getting token: {e}")
-        return None
+        raise SystemExit(e)
     
 
     # brazil clara transaction url
@@ -67,6 +67,7 @@ def get_expenses_from_clara_api():
     query_params = {
         "operationDateRangeStart": start_date.strftime('%Y-%m-%d'),
         "operationDateRangeEnd": end_date.strftime('%Y-%m-%d'),
+        "page": 0,
     }
 
     try:
@@ -80,9 +81,30 @@ def get_expenses_from_clara_api():
         response_expenses.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error getting expenses: {e}")
-        return None
+        raise SystemExit(e)
     
-    return response_expenses.json()["content"]
+    expenses_data = response_expenses.json().get("content")
+    is_last_page = response_expenses.json().get("last")
+
+    while not is_last_page:
+        query_params["page"] += 1
+        try:
+            response_expenses = requests.get(
+                transaction_url, 
+                headers=headers,
+                params=query_params,
+                cert=cert,
+                verify=f"{CLARA_CERTIFICATION_PATH}.pem"
+            )
+            response_expenses.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"Error getting expenses: {e}")
+            raise SystemExit(e)
+    
+        expenses_data += response_expenses.json().get("content")
+        is_last_page = response_expenses.json().get("last")
+
+    return expenses_data
 
 
 response_data = get_expenses_from_clara_api()
