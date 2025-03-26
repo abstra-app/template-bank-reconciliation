@@ -1,3 +1,15 @@
+from abstra.compat import use_legacy_threads
+"""
+Calling the use_legacy_threads function allows using
+the legacy threads in versions > 3.0.0
+https://abstra.io/docs/guides/use-legacy-threads/
+
+The new way of using workflows is with tasks. Learn more
+at https://abstra.io/docs/concepts/tasks/ and contact us
+on any issues during your migration
+"""
+use_legacy_threads("jobs")
+
 import abstra.workflows as aw
 import os
 import requests

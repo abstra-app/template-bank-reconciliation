@@ -1,4 +1,4 @@
-abstra==2.26.3
+abstra==3.13.0
 pandas==2.2.1
 loguru==0.7.2
 slack_sdk==3.31.0
