@@ -1,16 +1,4 @@
-from abstra.compat import use_legacy_threads
-"""
-Calling the use_legacy_threads function allows using
-the legacy threads in versions > 3.0.0
-https://abstra.io/docs/guides/use-legacy-threads/
-
-The new way of using workflows is with tasks. Learn more
-at https://abstra.io/docs/concepts/tasks/ and contact us
-on any issues during your migration
-"""
-use_legacy_threads("jobs")
-
-import abstra.workflows as aw
+from abstra.tasks import send_task
 import os
 import requests
 import uuid
@@ -81,4 +69,4 @@ def get_expenses_from_brex_api():
 
 response_data = get_expenses_from_brex_api()
 formatted_response = format_response(response_data)
-aw.set_data("api_output", formatted_response)
+send_task({"api_output": formatted_response})
