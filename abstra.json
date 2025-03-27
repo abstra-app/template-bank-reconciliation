@@ -23,8 +23,8 @@
       "title": "Get Expenses From Inter Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        60.0
+        -30,
+        60
       ],
       "transitions": [
         {
@@ -32,7 +32,7 @@
           "target_type": "scripts",
           "type": "task",
           "id": "utteucc",
-          "task_type": "success"
+          "task_type": "api_output"
         }
       ]
     },
@@ -42,8 +42,8 @@
       "title": "Get Expenses From Santander Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        165.0
+        -30,
+        165
       ],
       "transitions": [
         {
@@ -51,7 +51,7 @@
           "target_type": "scripts",
           "type": "task",
           "id": "hqy4pve",
-          "task_type": "success"
+          "task_type": "api_output"
         }
       ]
     },
@@ -61,8 +61,8 @@
       "title": "Get Expenses From Brex Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        -30.0
+        -30,
+        -30
       ],
       "transitions": [
         {
@@ -70,7 +70,7 @@
           "target_type": "scripts",
           "type": "task",
           "id": "2xe43p9",
-          "task_type": "success"
+          "task_type": "api_output"
         }
       ]
     },
@@ -80,8 +80,8 @@
       "title": "Get Expenses From Clara Bank API",
       "schedule": "30 20 1 * *",
       "workflow_position": [
-        -30.0,
-        -120.0
+        -30,
+        -120
       ],
       "transitions": [
         {
@@ -89,7 +89,7 @@
           "target_type": "scripts",
           "type": "task",
           "id": "i8ygbh4",
-          "task_type": "success"
+          "task_type": "api_output"
         }
       ]
     }
@@ -112,13 +112,13 @@
       "restart_button_text": null,
       "file": "upload_bank_expenses_form.py",
       "workflow_position": [
-        -30.0,
-        345.0
+        -30,
+        345
       ],
       "transitions": [
         {
           "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
-          "target_type": "conditions",
+          "target_type": "scripts",
           "type": "task",
           "id": "o4qs36w",
           "task_type": "success"
@@ -149,13 +149,13 @@
       "restart_button_text": null,
       "file": "manual_bank_reconcilliation.py",
       "workflow_position": [
-        1080.0,
-        195.0
+        1080,
+        195
       ],
       "transitions": [
         {
           "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
-          "target_type": "conditions",
+          "target_type": "scripts",
           "type": "task",
           "id": "r94l5g1",
           "task_type": "success"
@@ -186,8 +186,8 @@
       "restart_button_text": null,
       "file": "register_missing_expenses.py",
       "workflow_position": [
-        1560.0,
-        345.0
+        1560,
+        345
       ],
       "transitions": [],
       "notification_trigger": {
@@ -207,13 +207,13 @@
       "title": "Match Expenses",
       "is_initial": false,
       "workflow_position": [
-        444.0,
-        36.0
+        444,
+        36
       ],
       "transitions": [
         {
           "target_id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
-          "target_type": "conditions",
+          "target_type": "scripts",
           "type": "task",
           "id": "h7tddsg",
           "task_type": "success"
@@ -226,8 +226,8 @@
       "title": "Expenses Slack Notification",
       "is_initial": false,
       "workflow_position": [
-        1200.0,
-        45.0
+        1200,
+        45
       ],
       "transitions": [
         {
@@ -245,8 +245,8 @@
       "title": "Condition on has_unmatched_expenses",
       "is_initial": false,
       "workflow_position": [
-        768.0,
-        36.0
+        768,
+        36
       ],
       "transitions": [
         {
@@ -264,8 +264,8 @@
       "title": "Condition on has_unaproved_expenses",
       "is_initial": false,
       "workflow_position": [
-        1080.0,
-        345.0
+        1080,
+        345
       ],
       "transitions": [
         {
