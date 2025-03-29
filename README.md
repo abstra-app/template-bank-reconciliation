@@ -94,7 +94,7 @@ For importing the expenses from the bank`s APIs, use:
   - **expenses_slack_notifcation.py**: Script to send an alert to a Slack channel regarding the unreconciled expenses resulting from the automatic matching process.
 
 ### Manual Bank Reconciliation Form
-  - **manual_bank_reconcilliation.py**: Script to generate a form for verifying unmatched expenses and matching them with expenses in the database.
+  - **manual_bank_reconciliation.py**: Script to generate a form for verifying unmatched expenses and matching them with expenses in the database.
 
 ### Manual Upload of Bank Expenses Form
   - **upload_bank_expenses_form.py**: Script to generate a form for uploading expenses as an .xlsx file (use `Bank_Expenses.xlsx` as a template) and verifying them against the expenses registered in the database.
