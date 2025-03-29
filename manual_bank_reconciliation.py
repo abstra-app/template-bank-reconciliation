@@ -9,8 +9,7 @@ task = tasks[0]
 payload = task.payload
 notification_email = payload["notification_email"]
 unmatched_expenses = payload["unmatched_expenses"]
-api_output = payload["api_output"]
-expenses_bank = api_output["bank"]
+expenses_bank = payload["expenses_bank"]
 
 table_rows = at.select("internal_tracking_expenses", where={"verified": False, "bank": expenses_bank})
 database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
