@@ -1,22 +1,13 @@
-from abstra.compat import use_legacy_threads
-"""
-Calling the use_legacy_threads function allows using
-the legacy threads in versions > 3.0.0
-https://abstra.io/docs/guides/use-legacy-threads/
-
-The new way of using workflows is with tasks. Learn more
-at https://abstra.io/docs/concepts/tasks/ and contact us
-on any issues during your migration
-"""
-use_legacy_threads("scripts")
-
-import abstra.workflows as aw
+from abstra.tasks import send_task, get_trigger_task
 import slack_sdk as slack
 import os 
 from slack_sdk.errors import SlackApiError
 
-unmatched_expenses = aw.get_data("unmatched_expenses")
-expenses_bank = aw.get_data("expenses_bank")
+task = get_trigger_task()
+payload = task.payload
+unmatched_expenses = payload["unmatched_expenses"]
+expenses_bank = payload["expenses_bank"]
+notification_email = payload["notification_email"]
 
 SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_CHANNEL = os.getenv("SLACK_CHANNEL")
@@ -46,4 +37,5 @@ message += '''
 
 slack_msg(channel=SLACK_CHANNEL, message=message)
 
-
+send_task("unmatched_expenses", payload)
+task.complete()
