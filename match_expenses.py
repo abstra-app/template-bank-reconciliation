@@ -1,16 +1,4 @@
-from abstra.compat import use_legacy_threads
-"""
-Calling the use_legacy_threads function allows using
-the legacy threads in versions > 3.0.0
-https://abstra.io/docs/guides/use-legacy-threads/
-
-The new way of using workflows is with tasks. Learn more
-at https://abstra.io/docs/concepts/tasks/ and contact us
-on any issues during your migration
-"""
-use_legacy_threads("scripts")
-
-import abstra.workflows as aw
+from abstra.tasks import send_task, get_tasks
 import abstra.tables as at
 import os 
 from utils.abstra_ai_prompts import AIPrompts
@@ -18,10 +6,14 @@ from utils.expenses_entities import InternalTrackingExpenses
 
 notification_email = os.getenv("FINANCE_TEAM_EMAIL")
 
-api_output = aw.get_data("api_output")
-expenses_bank=aw.get_data("expenses_bank")
+# get the latest task from the API
+tasks = get_tasks()
+task = tasks[0]
+payload = task.payload
+api_output = payload["api_output"]
 api_output_data = api_output["data"]
-api_output_bank = api_output["bank"]
+expenses_bank = api_output["bank"]
+
 
 table_rows = at.select("internal_tracking_expenses", where={"verified": False, "bank": expenses_bank})
 database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
@@ -44,11 +36,12 @@ for api_expense in api_output_data:
     if not match_found:
         unmatched_expenses.append(api_expense)
 
-aw.set_data("expenses_bank", api_output["bank"])
+payload["expenses_bank"] = api_output["bank"]
 
 if unmatched_expenses:
-    aw.set_data("has_unmatched_expenses", True)
-    aw.set_data("unmatched_expenses", unmatched_expenses)
-    aw.set_data("notification_email", notification_email)
-else:
-    aw.set_data("has_unmatched_expenses", False)
+    # has unmatched expenses
+    payload["unmatched_expenses"] = unmatched_expenses
+    payload["notification_email"] = notification_email
+    send_task("match_data", payload)
+
+task.complete()
