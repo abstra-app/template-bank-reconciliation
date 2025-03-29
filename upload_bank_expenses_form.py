@@ -1,17 +1,5 @@
-from abstra.compat import use_legacy_threads
-"""
-Calling the use_legacy_threads function allows using
-the legacy threads in versions > 3.0.0
-https://abstra.io/docs/guides/use-legacy-threads/
-
-The new way of using workflows is with tasks. Learn more
-at https://abstra.io/docs/concepts/tasks/ and contact us
-on any issues during your migration
-"""
-use_legacy_threads("forms")
-
 import abstra.forms as af
-import abstra.workflows as aw
+from abstra.tasks import send_task
 import abstra.tables as at
 import os
 import shutil
@@ -135,12 +123,15 @@ if unmatched_page.action == "Use AI to decide":
 
 overview_page.run("Confirm")
 
-aw.set_data("unaproved_expenses", unaproved_expenses)
-aw.set_data("has_unaproved_expenses", str(len(unaproved_expenses) > 0).lower())
-aw.set_data("expenses_bank", expenses_bank)
+payload = {
+    "unaproved_expenses": unaproved_expenses,
+    "expenses_bank": expenses_bank,
+    "notification_email": notification_email,
+    }
 
-if (len(unaproved_expenses) > 0):
-    aw.set_data("notification_email", notification_email)
+if(len(unaproved_expenses) > 0):
+    send_task("unaproved_expenses", payload)
+
 
 # updates the database expense status of the approved expenses
 total_approved_expenses += approved_expenses
