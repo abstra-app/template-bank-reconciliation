@@ -1,22 +1,16 @@
-from abstra.compat import use_legacy_threads
-"""
-Calling the use_legacy_threads function allows using
-the legacy threads in versions > 3.0.0
-https://abstra.io/docs/guides/use-legacy-threads/
-
-The new way of using workflows is with tasks. Learn more
-at https://abstra.io/docs/concepts/tasks/ and contact us
-on any issues during your migration
-"""
-use_legacy_threads("forms")
-
 import abstra.forms as af
-import abstra.workflows as aw
+from abstra.tasks import get_tasks
 import abstra.tables as at
 from utils.expenses_entities import InternalTrackingExpenses
 
-unaproved_expenses = aw.get_data("unaproved_expenses")
-expenses_bank = aw.get_data("expenses_bank")
+tasks = get_tasks()
+task = tasks[0]
+payload = task.payload
+notification_email = payload["notification_email"]
+unaproved_expenses = payload["unaproved_expenses"]
+expenses_bank = payload["expenses_bank"]
+
+
 table_rows = at.select("internal_tracking_expenses", where={"verified": False})
 database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
 unaproved_expenses_id = []
@@ -134,3 +128,5 @@ if initial_page.action == 'Verify Each Expense':
                           set=change_fields)
             else:
                 pass
+
+task.complete()
