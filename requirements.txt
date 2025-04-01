@@ -1,5 +1,5 @@
-abstra==3.13.0
-pandas==2.2.1
+abstra==3.14.0
+pandas
 loguru==0.7.2
 slack-sdk==3.31.0
 python-dotenv==1.0.1
