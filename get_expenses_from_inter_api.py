@@ -1,4 +1,4 @@
-import abstra.workflows as aw
+from abstra.tasks import send_task
 import os
 import requests
 import uuid
@@ -86,4 +86,4 @@ def get_expenses_from_inter_api():
 response = get_expenses_from_inter_api()
 formatted_response = format_response(response)
 formatted_response["data"] = formatted_response["data"][:10]
-aw.set_data("api_output", formatted_response)
+send_task({"api_output": formatted_response})

@@ -10,12 +10,6 @@
     "font_family": null,
     "font_color": null
   },
-  "kanban": {
-    "access_control": {
-      "is_public": false,
-      "required_roles": []
-    }
-  },
   "home": {
     "access_control": {
       "is_public": true,
@@ -36,9 +30,9 @@
         {
           "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
           "target_type": "scripts",
-          "type": "jobs:finished",
+          "type": "task",
           "id": "utteucc",
-          "condition_value": null
+          "task_type": "api_output"
         }
       ]
     },
@@ -55,9 +49,9 @@
         {
           "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
           "target_type": "scripts",
-          "type": "jobs:finished",
+          "type": "task",
           "id": "hqy4pve",
-          "condition_value": null
+          "task_type": "api_output"
         }
       ]
     },
@@ -74,9 +68,9 @@
         {
           "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
           "target_type": "scripts",
-          "type": "jobs:finished",
+          "type": "task",
           "id": "2xe43p9",
-          "condition_value": null
+          "task_type": "api_output"
         }
       ]
     },
@@ -93,9 +87,9 @@
         {
           "target_id": "cd164fc1-ef1e-4c0a-b5c1-9a0022171eb9",
           "target_type": "scripts",
-          "type": "jobs:finished",
+          "type": "task",
           "id": "i8ygbh4",
-          "condition_value": null
+          "task_type": "api_output"
         }
       ]
     }
@@ -123,11 +117,11 @@
       ],
       "transitions": [
         {
-          "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
-          "target_type": "conditions",
-          "type": "forms:finished",
-          "id": "o4qs36w",
-          "condition_value": null
+          "target_id": "cb8d65bc-c630-4c66-bb9f-365498e1f3fb",
+          "target_type": "forms",
+          "type": "task",
+          "id": "spcy5rp",
+          "task_type": "unaproved_expenses"
         }
       ],
       "notification_trigger": {
@@ -141,8 +135,8 @@
     },
     {
       "id": "71c68719-5905-46cf-9d30-f14f67b5dff3",
-      "path": "manual-bank-reconcilliation",
-      "title": "Manual Bank Reconcilliation",
+      "path": "manual-bank-reconciliation",
+      "title": "Manual Bank Reconciliation",
       "is_initial": false,
       "auto_start": false,
       "allow_restart": false,
@@ -153,18 +147,18 @@
       "timeout_message": null,
       "start_button_text": null,
       "restart_button_text": null,
-      "file": "manual_bank_reconcilliation.py",
+      "file": "manual_bank_reconciliation.py",
       "workflow_position": [
-        1080.0,
-        195.0
+        900.0,
+        180.0
       ],
       "transitions": [
         {
-          "target_id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
-          "target_type": "conditions",
-          "type": "forms:finished",
-          "id": "r94l5g1",
-          "condition_value": null
+          "target_id": "cb8d65bc-c630-4c66-bb9f-365498e1f3fb",
+          "target_type": "forms",
+          "type": "task",
+          "id": "9x5774h",
+          "task_type": "unaproved_expenses"
         }
       ],
       "notification_trigger": {
@@ -192,7 +186,7 @@
       "restart_button_text": null,
       "file": "register_missing_expenses.py",
       "workflow_position": [
-        1560.0,
+        900.0,
         345.0
       ],
       "transitions": [],
@@ -213,16 +207,16 @@
       "title": "Match Expenses",
       "is_initial": false,
       "workflow_position": [
-        444.0,
-        36.0
+        450.0,
+        30.0
       ],
       "transitions": [
         {
-          "target_id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
-          "target_type": "conditions",
-          "type": "scripts:finished",
-          "id": "h7tddsg",
-          "condition_value": null
+          "target_id": "7c1d5d08-c8b9-4780-9582-2f26304ea51b",
+          "target_type": "scripts",
+          "type": "task",
+          "id": "0kjubrd",
+          "task_type": "unmatched_expenses"
         }
       ]
     },
@@ -232,56 +226,21 @@
       "title": "Expenses Slack Notification",
       "is_initial": false,
       "workflow_position": [
-        1200.0,
-        45.0
+        900.0,
+        30.0
       ],
       "transitions": [
         {
           "target_id": "71c68719-5905-46cf-9d30-f14f67b5dff3",
           "target_type": "forms",
-          "type": "scripts:finished",
+          "type": "task",
           "id": "vn7zv87",
-          "condition_value": null
+          "task_type": "unmatched_expenses"
         }
       ]
     }
   ],
-  "iterators": [],
-  "conditions": [
-    {
-      "id": "f2355b3c-e242-43f7-a5fc-857847cb8a81",
-      "variable_name": "has_unmatched_expenses",
-      "workflow_position": [
-        768.0,
-        36.0
-      ],
-      "transitions": [
-        {
-          "target_id": "7c1d5d08-c8b9-4780-9582-2f26304ea51b",
-          "target_type": "scripts",
-          "type": "conditions:patternMatched",
-          "id": "fwwpggu",
-          "condition_value": "True"
-        }
-      ]
-    },
-    {
-      "id": "96d4965a-8b54-4cbe-9465-b1f9f122b8b7",
-      "variable_name": "has_unaproved_expenses",
-      "workflow_position": [
-        1080.0,
-        345.0
-      ],
-      "transitions": [
-        {
-          "target_id": "cb8d65bc-c630-4c66-bb9f-365498e1f3fb",
-          "target_type": "forms",
-          "type": "conditions:patternMatched",
-          "id": "xqhqrua",
-          "condition_value": "true"
-        }
-      ]
-    }
-  ],
-  "version": "11.0"
+  "agents": [],
+  "clients": [],
+  "version": "13.0"
 }

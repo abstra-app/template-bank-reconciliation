@@ -1,10 +1,13 @@
-import abstra.workflows as aw
+from abstra.tasks import send_task, get_trigger_task
 import slack_sdk as slack
 import os 
 from slack_sdk.errors import SlackApiError
 
-unmatched_expenses = aw.get_data("unmatched_expenses")
-expenses_bank = aw.get_data("expenses_bank")
+task = get_trigger_task()
+payload = task.payload
+unmatched_expenses = payload["unmatched_expenses"]
+expenses_bank = payload["expenses_bank"]
+notification_email = payload["notification_email"]
 
 SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_CHANNEL = os.getenv("SLACK_CHANNEL")
@@ -34,4 +37,5 @@ message += '''
 
 slack_msg(channel=SLACK_CHANNEL, message=message)
 
-
+send_task("unmatched_expenses", payload)
+task.complete()

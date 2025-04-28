@@ -1,18 +1,21 @@
 import abstra.forms as af
-import abstra.workflows as aw
+from abstra.tasks import get_tasks, send_task
 import abstra.tables as at
 from utils.expenses_entities import UnmatchedExpense, InternalTrackingExpenses
 from utils.abstra_ai_prompts import AIPrompts
 
-unmatched_json = aw.get_data("unmatched_expenses")
-expenses_bank = aw.get_data("expenses_bank")
-api_output = aw.get_data("api_output")
+tasks = get_tasks()
+task = tasks[0]
+payload = task.payload
+notification_email = payload["notification_email"]
+unmatched_expenses = payload["unmatched_expenses"]
+expenses_bank = payload["expenses_bank"]
 
 table_rows = at.select("internal_tracking_expenses", where={"verified": False, "bank": expenses_bank})
 database_expenses = [InternalTrackingExpenses(row) for row in table_rows]
 
 unmatched_list = []
-for unmatched_expense in unmatched_json:
+for unmatched_expense in unmatched_expenses:
     unmatched_list.append(UnmatchedExpense(**unmatched_expense))
 
 header = (f'''
@@ -34,10 +37,14 @@ overview_page = af.Page().display_markdown(f'''
 
 overview_page.run("Confirm")
 
-aw.set_data("unaproved_expenses", unaproved_expenses)
-aw.set_data("has_unaproved_expenses", str(len(unaproved_expenses) > 0).lower())
 
 # updates the database expense status of the approved expenses
 for database_expense in database_expenses:
     if database_expense.id in approved_expenses:
         at.update("internal_tracking_expenses", where={"id": database_expense.id}, set={"verified": "true"})
+
+if(len(unaproved_expenses) > 0):
+    payload["unaproved_expenses"] = unaproved_expenses
+    send_task("unaproved_expenses", payload)
+
+task.complete()

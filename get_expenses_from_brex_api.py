@@ -1,4 +1,4 @@
-import abstra.workflows as aw
+from abstra.tasks import send_task
 import os
 import requests
 import uuid
@@ -69,4 +69,4 @@ def get_expenses_from_brex_api():
 
 response_data = get_expenses_from_brex_api()
 formatted_response = format_response(response_data)
-aw.set_data("api_output", formatted_response)
+send_task({"api_output": formatted_response})
