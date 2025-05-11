@@ -12,7 +12,7 @@ Integrations:
 
 To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/demo?url=template-bank-reconciliation)
 
-![image](https://github.com/user-attachments/assets/7765478e-5e38-4ad4-b169-4b7ba0195b1a)
+![A bank expenses conciliation workflow built in Abstra](https://github.com/user-attachments/assets/7765478e-5e38-4ad4-b169-4b7ba0195b1a)
 
 ## Initial Configuration
 To use this project, some initial configurations are necessary:
